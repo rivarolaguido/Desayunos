@@ -4,7 +4,7 @@ on:
   schedule:
     # Se ejecuta a las 10:00 UTC (07:00 AM ART) de Lunes a Viernes
     - cron: '0 10 * * 1-5'
-  workflow_dispatch: # Esto permite que vos lo actives manualmente para probar
+  workflow_dispatch: 
 
 jobs:
   send_whatsapp:
