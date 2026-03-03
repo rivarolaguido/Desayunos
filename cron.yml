@@ -1,0 +1,32 @@
+name: Recordatorio Diario Merienda WhatsApp
+
+on:
+  schedule:
+    # Se ejecuta a las 10:00 UTC (07:00 AM ART) de Lunes a Viernes
+    - cron: '0 10 * * 1-5'
+  workflow_dispatch: # Esto permite que vos lo actives manualmente para probar
+
+jobs:
+  send_whatsapp:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout del código
+        uses: actions/checkout@v3
+
+      - name: Configurar Python
+        uses: actions/setup-python@v4
+        with:
+          python-speed: '3.9'
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install twilio
+
+      - name: Ejecutar script de WhatsApp
+        env:
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+          TWILIO_PHONE: ${{ secrets.TWILIO_PHONE }}
+          MY_PHONE: ${{ secrets.MY_PHONE }}
+        run: python enviar_whatsapp.py
