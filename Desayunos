@@ -1,0 +1,39 @@
+import streamlit as st
+from datetime import datetime, timedelta
+
+# Estructura de datos basada en tu modelo
+menu_data = {
+    "Semana 1": {
+        "Lunes": {"Desayuno": "Galletitas de banana y avena + fruta", "Merienda": "Mismas galletitas para ambas"},
+        "Martes": {"Desayuno": "Pan de salvado con queso + fruta", "Merienda": "Juli: Sandwich / Ele: Yogur + fruta/granola"},
+        "Miércoles": {"Desayuno": "Panqueques de banana", "Merienda": "Juli: 2 mini panqueques / Ele: Fruta cortada"},
+        "Jueves": {"Desayuno": "Tostadas con pasta de maní + banana", "Merienda": "Juli: Fruta / Ele: Tostaditas saladas con queso"},
+        "Viernes": {"Desayuno": "Yogur con avena y fruta", "Merienda": "Juli: Yogur con cereal / Ele: Mix cereal + fruta"},
+    },
+    "Semana 2": {
+        "Lunes": {"Desayuno": "Muffins de banana y avena", "Merienda": "Mismos muffins para ambas"},
+        "Martes": {"Desayuno": "Sandwich integral con queso y huevo", "Merienda": "Juli: Sandwich / Ele: Yogur bebible + fruta"},
+        "Miércoles": {"Desayuno": "Huevo revuelto con tostada", "Merienda": "Juli: Mini omelette / Ele: Fruta + frutos secos"},
+        "Jueves": {"Desayuno": "Licuado de banana + tostada", "Merienda": "Juli: Fruta / Ele: Tostaditas o mini sandwich"},
+        "Viernes": {"Desayuno": "Granola casera + leche/yogur", "Merienda": "Juli: Yogur con granola / Ele: Granola + fruta"},
+    }
+}
+
+st.title("🍎 Tracker de Meriendas: Juli & Ele")
+
+semana = st.selectbox("Seleccioná la semana", ["Semana 1", "Semana 2"])
+dia = st.selectbox("Día", ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes"])
+
+info = menu_data[semana][dia]
+
+col1, col2 = st.columns(2)
+with col1:
+    st.subheader("☀️ Desayuno")
+    st.write(info["Desayuno"])
+with col2:
+    st.subheader("🎒 Merienda Jardín")
+    st.write(info["Merienda"])
+
+if st.button("📅 Sincronizar con Google Calendar"):
+    st.info("Conectando con la API de Google... (Requiere credentials.json)")
+    # Aquí iría la lógica de Google API detallada abajo
