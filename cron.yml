@@ -1,10 +1,1 @@
-name: Test WhatsApp
-on:
-  workflow_dispatch: # Esto activa el botón manual
 
-jobs:
-  test:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Hola
-        run: echo "El workflow funciona"
